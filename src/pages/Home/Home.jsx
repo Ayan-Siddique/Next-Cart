@@ -96,7 +96,7 @@ const Home = () => {
             Women's Style
           </div>
         </NavLink>
-        <NavLink to={"/products/jewelry"}>
+        <NavLink to={"/products/jewelery"}>
           <div className="bg-gray-200 h-40 flex items-center justify-center hover:scale-105 transition">
             Jewelery
           </div>
