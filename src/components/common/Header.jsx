@@ -11,6 +11,7 @@ import { ProductContext } from "../../context/ProductContext";
 const Header = () => {
   const { cart } = useContext(CartContext);
   const { search, setSearch } = useContext(ProductContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   // ======= hover and active class for navlinks =======
 
@@ -106,11 +107,69 @@ const Header = () => {
 
             {/* Mobile Menu Icon */}
             <div className="md:hidden">
-              <button className="text-2xl">☰</button>
+              <button className="text-2xl" onClick={() => setIsOpen(!isOpen)}>
+                ☰
+              </button>
             </div>
           </div>
         </div>
       </nav>
+      <div
+        className={`md:hidden px-4 bg-white shadow space-y-4 overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? "max-h-96 py-4 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        {/* Links */}
+        <NavLink to="/" className="block" onClick={() => setIsOpen(false)}>
+          Home
+        </NavLink>
+        <NavLink
+          to="/products"
+          className="block"
+          onClick={() => setIsOpen(false)}
+        >
+          Shop
+        </NavLink>
+        <NavLink
+          to="/products/men"
+          className="block"
+          onClick={() => setIsOpen(false)}
+        >
+          Men
+        </NavLink>
+        <NavLink
+          to="/products/women"
+          className="block"
+          onClick={() => setIsOpen(false)}
+        >
+          Women
+        </NavLink>
+        <NavLink
+          to="/products/jewelery"
+          className="block"
+          onClick={() => setIsOpen(false)}
+        >
+          Jewelery
+        </NavLink>
+        <NavLink
+          to="/products/electronics"
+          className="block"
+          onClick={() => setIsOpen(false)}
+        >
+          Electronics
+        </NavLink>
+
+        {/* Search */}
+        <div className="flex items-center bg-gray-100 px-3 py-2 rounded-md">
+          <input
+            value={search}
+            type="text"
+            placeholder="Search..."
+            className="bg-transparent outline-none text-sm w-full"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
     </>
   );
 };
